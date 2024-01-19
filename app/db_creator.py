@@ -6,7 +6,7 @@ class DuckdbCreation:
         self.name_db = name_db
         self.input_path = input_path
         self.parquet_file = f"df_{self.name_db}"
-        self.output_dir = 'output'
+        self.output_dir = 'database'
 
     def start(self):
         self.create_output_directory()
