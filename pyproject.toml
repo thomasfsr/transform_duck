@@ -9,8 +9,14 @@ readme = "README.md"
 python = "^3.11"
 pandas = "^2.1.4"
 duckdb = "^0.9.2"
+pytest = "^7.4.4"
+taskipy = "^1.12.2"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.taskipy.tasks]
+run = "poetry run start.py"
+test = "poetry run pytest -v"
