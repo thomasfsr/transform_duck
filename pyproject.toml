@@ -14,9 +14,9 @@ taskipy = "^1.12.2"
 
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-cotre"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.taskipy.tasks]
-run = "poetry run start.py"
+run = "poetry run python start.py"
 test = "poetry run pytest -v"
