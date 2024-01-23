@@ -29,12 +29,14 @@ class DuckdbTransform:
         conn.execute(f"CREATE TABLE {self.tbl_name} AS SELECT * FROM read_csv_auto('{self.input_path}/*.csv', filename=true)")
 
     def save_as_parquet(self, conn):        
-        conn.execute(f"COPY cleansed_{self.tbl_name} TO '{self.output_dir}/{self.parquet_file}.parquet' (FORMAT PARQUET)")
+        conn.execute(f"COPY df_{self.tbl_name} TO '{self.output_dir}/{self.parquet_file}.parquet' (FORMAT PARQUET)")
     
     def close_connection(self, conn):
         conn.close()
     
     def cleaner(self, conn):
-        cleaner_query = f'''CREATE TABLE cleansed_{self.tbl_name} AS SELECT * FROM {self.tbl_name} WHERE price > 0 '''
-        conn.execute(cleaner_query)
+        timestamp_query = f'ALTER TABLE {self.tbl_name} ALTER COLUMN transaction_time SET DATA TYPE TIMESTAMP'
+        dash_query = f'CREATE TABLE df_{self.tbl_name} AS SELECT transaction_time, product_name, price, store  FROM {self.tbl_name} WHERE price > 0'
+        conn.execute(timestamp_query)
+        conn.execute(dash_query)
 
