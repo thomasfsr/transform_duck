@@ -1,6 +1,6 @@
 from app.db_tool import DuckdbTransform
 
-dbname = 'transaction'
+dbname = 'transactions'
 path = 'data/arquivos_csv'
 tablename = 'transactions'
 # Instantiate the class
