@@ -20,14 +20,14 @@ fig1.update_layout(
 )
 
 app.layout = html.Div(children=[
-    html.H1(children='Total de vendas por loja'),
+    html.H1(children='Dados da tabela de transações'),
     #html.H2(children='Gráfico com o Faturamento de Todos os Produtos separados por Loja'),
     #html.Div(children='''
     #    Obs: Esse gráfico mostra a quantidade de produtos vendidos, não o faturamento.
     #'''),
 #
     #dcc.Dropdown(opcoes, value='Todas as Lojas', id='lista_lojas'),
-
+    html.H3(children='Gráfico de total de vendas por loja', style={'textAlign': 'center'}), 
     dcc.Graph(
         id='grafico_quantidade_vendas',
         figure=fig1
@@ -40,7 +40,8 @@ app.layout = html.Div(children=[
             {'name': 'total de vendas em R$', 'id': 'total_price'}  # Change 'price' to 'total de vendas em R$'
         ],
         data=top_3_vendas.to_dict('records'),
-        style_table={'width': '50%'}
+        style_table={'width': '50%', },
+        style_cell={'textAlign': 'center'}
     )
 ])
 
