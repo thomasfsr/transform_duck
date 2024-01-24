@@ -22,3 +22,4 @@ build-backend = "poetry.core.masonry.api"
 [tool.taskipy.tasks]
 run = "poetry run python start.py"
 test = "poetry run pytest -v"
+dash = "poetry run python dashboard.py"
