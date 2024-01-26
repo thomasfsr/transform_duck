@@ -66,7 +66,7 @@ class DuckdbTransform:
 
     @staticmethod
     def merge_csv_files_static(conn, tbl_name, passed_list):
-        query = f'''CREATE TABLE {tbl_name} AS SELECT * FROM read_csv_auto({passed_list},
+        query = f'''CREATE TABLE {tbl_name} AS SELECT transaction_time, product_name, price, store FROM read_csv_auto({passed_list},
                                                         filename=True, union_by_name=True)'''
         conn.execute(query)
 
