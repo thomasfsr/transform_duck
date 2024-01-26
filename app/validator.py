@@ -16,11 +16,12 @@ def validate_csv(file_path: str) -> List[ValidationError]:
         except ValidationError as e:
             for error in e.errors():
                 errors.append(f"CSV: {file_path}, Row: {row_num}, {error}")
+            break  
     
     return errors
 
 def validator(folder: str) -> List[str]:
-    passed_files = [] 
+    passed_files = []  
     
     for filename in os.listdir(folder):
         if filename.endswith(".csv"):
@@ -29,8 +30,8 @@ def validator(folder: str) -> List[str]:
             
             if errors:
                 print(f"Validation errors in file: {file_path}")
-                #for error in errors:
-                    #print(error)
+                for error in errors:
+                    print(error)
             else:
                 print(f"File {file_path} is valid.")
                 passed_files.append(file_path)
