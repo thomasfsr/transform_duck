@@ -1,11 +1,7 @@
 import os
 
-import pytest
-
 from app.db_tools import DuckdbClass
 
-
-@pytest.fixture
 def test_create_output_directory():
     duckdb_creator = DuckdbClass(
         'database_test', 'tbl_test', 'tests/data_test', 'tests/output_test'
@@ -13,8 +9,6 @@ def test_create_output_directory():
     duckdb_creator.create_output_directory()
     assert os.path.exists(duckdb_creator.output_dir)
 
-
-@pytest.fixture
 def test_connect_to_db():
     duckdb_creator = DuckdbClass(
         'database_test', 'tbl_test', 'tests/data_test', 'tests/output_test'
