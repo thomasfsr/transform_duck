@@ -35,5 +35,5 @@ def validator(folder: str) -> List[str]:
             else:
                 print(f"File {file_path} is valid.")
                 passed_files.append(file_path)
-    
+    print(f"Arquivos aceitos foram:{passed_files}")
     return passed_files

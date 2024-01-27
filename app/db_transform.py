@@ -22,7 +22,6 @@ class DuckdbTransform:
         try:
             passed_list = self.validation_call()
             self.merge_csv_files(conn, passed_list)
-            self.cleaner(conn)
             self.save_as_parquet(conn)
         finally:
             self.close_connection(conn)
@@ -41,14 +40,11 @@ class DuckdbTransform:
 
     def save_as_parquet(self, conn):
         self.save_as_parquet_static(
-            conn, self.parquet_file, self.output_dir
+            conn, self.parquet_file, self.output_dir, tbl_name= self.tbl_name
         )
 
     def close_connection(self, conn):
         self.close_connection_static(conn)
-
-    def cleaner(self, conn):
-        self.cleaner_static(conn, self.tbl_name)
     
     @staticmethod
     def create_output_directory_static(output_dir):
@@ -71,17 +67,10 @@ class DuckdbTransform:
         conn.execute(query)
 
     @staticmethod
-    def save_as_parquet_static(conn, parquet_file, output_dir):
-        query = f"COPY {parquet_file} TO '{output_dir}/{parquet_file}.parquet' (FORMAT PARQUET)"
+    def save_as_parquet_static(conn, parquet_file, output_dir, tbl_name):
+        query = f"COPY {tbl_name} TO '{output_dir}/{parquet_file}.parquet' (FORMAT PARQUET)"
         conn.execute(query)
 
-    @staticmethod
-    def cleaner_static(conn, tbl_name):
-        #timestamp_query = f'ALTER TABLE {tbl_name} ALTER COLUMN transaction_time SET DATA TYPE TIMESTAMP'
-        dash_query = f'CREATE TABLE df_{tbl_name} AS SELECT transaction_time, product_name, price, store  FROM {tbl_name} WHERE price > 0'
-        #conn.execute(timestamp_query)
-        conn.execute(dash_query)
-    
     @staticmethod
     def close_connection_static(conn):
         conn.close()

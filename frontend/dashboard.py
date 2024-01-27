@@ -3,13 +3,15 @@ import plotly.express as px
 from dash import Dash, dcc, html
 from dash.dash_table import DataTable
 
+path_db = 'db/sales.db'
+table_name = 'sales_retail'
 app = Dash(__name__)
-conn = duckdb.connect('database/transactions.db')
+conn = duckdb.connect(path_db)
 
-sum_price_per_store_query = 'SELECT store AS Loja, SUM(price) AS "total de Vendas (R$)" FROM df_transactions GROUP BY store'
+sum_price_per_store_query = f'SELECT store AS Loja, SUM(price) AS "total de Vendas (R$)" FROM {table_name} GROUP BY store'
 sum_price_per_store = conn.execute(sum_price_per_store_query).fetch_df()
 
-top_3_vendas_query = """SELECT store AS Loja, SUM(price) AS "Total de Vendas (R$)" FROM df_transactions
+top_3_vendas_query = f"""SELECT store AS Loja, SUM(price) AS "Total de Vendas (R$)" FROM {table_name} 
                             GROUP BY Loja ORDER BY "Total de Vendas (R$)" DESC LIMIT 3"""
 top_3_vendas = conn.execute(top_3_vendas_query).fetch_df()
 
@@ -17,9 +19,9 @@ top_3_vendas['Total de Vendas (R$)'] = top_3_vendas[
     'Total de Vendas (R$)'
 ].round(2)
 
-timeline_vendas_query = """SELECT EXTRACT(DAY FROM transaction_time) AS Dia, 
+timeline_vendas_query = f"""SELECT EXTRACT(DAY FROM transaction_time) AS Dia, 
                             SUM(price) AS "Total de Vendas (R$)"
-                            FROM df_transactions 
+                            FROM {table_name}
                             GROUP BY Dia
                             """
 timeline_vendas = conn.execute(timeline_vendas_query).fetch_df()

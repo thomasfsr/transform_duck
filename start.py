@@ -1,12 +1,12 @@
-from app.db_tools import DuckdbClass
+from app.db_transform import DuckdbTransform
 
-dbname = 'transactions'
+dbname = 'sales'
 path = 'data/arquivos_csv'
-tablename = 'transactions'
-# Instantiate the class
-duckdb_creator = DuckdbClass(
-    db_name=dbname, input_path=path, tbl_name=tablename
-)
+tablename = 'sales_retail'
 
-# Call the start method to begin the process
+duckdb_creator = DuckdbTransform(
+    db_name=dbname, 
+    input_path=path, 
+    tbl_name=tablename
+    )
 duckdb_creator.start()

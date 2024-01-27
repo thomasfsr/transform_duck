@@ -1,9 +1,9 @@
 from pydantic import BaseModel, PositiveFloat, validator
-#import datetime
+from datetime import datetime
 
 class SalesRetail(BaseModel):
     product_name: str
-    #transaction_time: datetime
+    transaction_time: datetime
     price: PositiveFloat
     store: int
 
