@@ -179,3 +179,4 @@ pyrightconfig.json
 data/
 database/
 db/
+tests/output_test
