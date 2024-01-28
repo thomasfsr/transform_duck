@@ -1,4 +1,4 @@
-from pydantic import BaseModel, PositiveFloat, validator
+from pydantic import BaseModel, PositiveFloat, field_validator
 from datetime import datetime
 
 class SalesRetail(BaseModel):
@@ -7,7 +7,7 @@ class SalesRetail(BaseModel):
     price: PositiveFloat
     store: int
 
-    @validator("price")
+    @field_validator("price")
     def validate_price(cls, v):
         if v <= 0:
             raise ValueError("O preço deve ser positivo")
