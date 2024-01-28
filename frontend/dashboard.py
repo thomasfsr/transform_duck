@@ -3,9 +3,10 @@ import plotly.express as px
 from dash import Dash, dcc, html
 from dash.dash_table import DataTable
 
+app = Dash(__name__)
+
 path_db = 'db/sales.db'
 table_name = 'sales_retail'
-app = Dash(__name__)
 conn = duckdb.connect(path_db)
 
 sum_price_per_store_query = f'SELECT store AS Loja, SUM(price) AS "total de Vendas (R$)" FROM {table_name} GROUP BY store'
@@ -107,5 +108,4 @@ app.layout = html.Div(
     ]
 )
 
-if __name__ == '__main__':
-    app.run_server(debug=True)
+server = app.server
