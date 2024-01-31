@@ -177,7 +177,6 @@ pyrightconfig.json
 
 # Generated using ignr.py - github.com/Antrikshy/ignr.py
 data/
-database/
 db/
 tests/output_test
 connections
