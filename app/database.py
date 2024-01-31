@@ -1,18 +1,23 @@
-from sqlalchemy import create_engine
 from dotenv import load_dotenv
 import os
-import pandas as pd
-from sqlalchemy.orm import sessionmaker
-#import psycopg2
+import psycopg
+import duckdb
 
 load_dotenv()
 
 postgres_conn_str = os.getenv('db_external_url')
-postgres_engine = create_engine(postgres_conn_str)
 
-file = 'db/df_sales_retail.parquet'
-df = pd.read_parquet(file)
+conn_duck = duckdb.connect('db/sales.db')
+df = conn_duck.execute('SELECT * FROM sales_retail').fetch_df()
+conn_duck.close()
 
-df.to_sql('sales', postgres_engine, if_exists='replace', index=False)
+conn = psycopg.connect(postgres_conn_str, sslmode='require')
+print("Before to_sql")
 
-postgres_engine.dispose()
+df.to_sql(con=conn, name='sales_retail', 
+          if_exists='replace', 
+          index=False, 
+          method='multi'
+          )
+print("After to_sql")
+conn.close()

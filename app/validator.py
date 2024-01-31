@@ -2,7 +2,7 @@ import os
 from typing import List
 
 import pandas as pd
-from contract import SalesRetail
+from app.contract import SalesRetail
 from pydantic import ValidationError
 
 
