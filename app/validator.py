@@ -3,7 +3,7 @@ from typing import List
 import pandas as pd
 import os
 
-from app.contract import SalesRetail
+from contract import SalesRetail
 
 def validate_csv(file_path: str) -> List[ValidationError]:
     df = pd.read_csv(file_path)
@@ -37,3 +37,17 @@ def validator(folder: str) -> List[str]:
                 passed_files.append(file_path)
     print(f"Arquivos aceitos foram:{passed_files}")
     return passed_files
+
+def validator_df(df:pd.DataFrame):
+    rows = df.to_dict(orient='records')
+    errors = []
+    
+    for row_num, row in enumerate(rows, start=1):
+        try:
+            SalesRetail(**row)
+        except ValidationError as e:
+            for error in e.errors():
+                errors.append(f"CSV: {df}, Row: {row_num}, {error}")
+            break
+        
+    return errors
