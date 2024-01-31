@@ -5,8 +5,6 @@ path = 'data/arquivos_csv'
 tablename = 'sales_retail'
 
 duckdb_creator = DuckdbTransform(
-    db_name=dbname, 
-    input_path=path, 
-    tbl_name=tablename
-    )
+    db_name=dbname, input_path=path, tbl_name=tablename
+)
 duckdb_creator.start()

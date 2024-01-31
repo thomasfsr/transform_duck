@@ -1,6 +1,9 @@
 import os
+
 import duckdb
+
 from app.validator import validator
+
 
 class DuckdbTransform:
     def __init__(
@@ -31,21 +34,23 @@ class DuckdbTransform:
 
     def connect_to_db(self):
         return self.connect_to_db_static(self.output_dir, self.db_name)
-    
+
     def validation_call(self):
         return self.validation_call_static(input_path=self.input_path)
 
     def merge_csv_files(self, conn, passed_list):
-        self.merge_csv_files_static(conn, self.tbl_name, passed_list=passed_list)
+        self.merge_csv_files_static(
+            conn, self.tbl_name, passed_list=passed_list
+        )
 
     def save_as_parquet(self, conn):
         self.save_as_parquet_static(
-            conn, self.parquet_file, self.output_dir, tbl_name= self.tbl_name
+            conn, self.parquet_file, self.output_dir, tbl_name=self.tbl_name
         )
 
     def close_connection(self, conn):
         self.close_connection_static(conn)
-    
+
     @staticmethod
     def create_output_directory_static(output_dir):
         if not os.path.exists(output_dir):
@@ -54,7 +59,7 @@ class DuckdbTransform:
     @staticmethod
     def connect_to_db_static(output_dir, db_name):
         return duckdb.connect(database=f'{output_dir}/{db_name}.db')
-    
+
     @staticmethod
     def validation_call_static(input_path):
         passed_list = validator(input_path)
@@ -62,8 +67,8 @@ class DuckdbTransform:
 
     @staticmethod
     def merge_csv_files_static(conn, tbl_name, passed_list):
-        query = f'''CREATE TABLE {tbl_name} AS SELECT transaction_time, product_name, price, store FROM read_csv_auto({passed_list},
-                                                        filename=True, union_by_name=True)'''
+        query = f"""CREATE TABLE {tbl_name} AS SELECT transaction_time, product_name, price, store FROM read_csv_auto({passed_list},
+                                                        filename=True, union_by_name=True)"""
         conn.execute(query)
 
     @staticmethod

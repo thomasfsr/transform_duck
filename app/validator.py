@@ -1,53 +1,56 @@
-from pydantic import ValidationError
-from typing import List
-import pandas as pd
 import os
+from typing import List
 
+import pandas as pd
 from contract import SalesRetail
+from pydantic import ValidationError
+
 
 def validate_csv(file_path: str) -> List[ValidationError]:
     df = pd.read_csv(file_path)
     rows = df.to_dict(orient='records')
     errors = []
-    
+
     for row_num, row in enumerate(rows, start=1):
         try:
             SalesRetail(**row)
         except ValidationError as e:
             for error in e.errors():
-                errors.append(f"CSV: {file_path}, Row: {row_num}, {error}")
-            break  
-    
+                errors.append(f'CSV: {file_path}, Row: {row_num}, {error}')
+            break
+
     return errors
 
+
 def validator(folder: str) -> List[str]:
-    passed_files = []  
-    
+    passed_files = []
+
     for filename in os.listdir(folder):
-        if filename.endswith(".csv"):
+        if filename.endswith('.csv'):
             file_path = os.path.join(folder, filename)
             errors = validate_csv(file_path)
-            
+
             if errors:
-                print(f"Validation errors in file: {file_path}")
+                print(f'Validation errors in file: {file_path}')
                 for error in errors:
                     print(error)
             else:
-                print(f"File {file_path} is valid.")
+                print(f'File {file_path} is valid.')
                 passed_files.append(file_path)
-    print(f"Arquivos aceitos foram:{passed_files}")
+    print(f'Arquivos aceitos foram:{passed_files}')
     return passed_files
 
-def validator_df(df:pd.DataFrame):
+
+def validator_df(df: pd.DataFrame):
     rows = df.to_dict(orient='records')
     errors = []
-    
+
     for row_num, row in enumerate(rows, start=1):
         try:
             SalesRetail(**row)
         except ValidationError as e:
             for error in e.errors():
-                errors.append(f"CSV: {df}, Row: {row_num}, {error}")
+                errors.append(f'CSV: {df}, Row: {row_num}, {error}')
             break
-        
+
     return errors
