@@ -1,7 +1,7 @@
 ## Para visualizar o Dashboard:  
 https://dash-sales-retail-duckdb.onrender.com/  
   
-## Passos para instalar o projeto:  
+## Passos para instalação o projeto:  
 `git clone https://github.com/thomasfsr/transform_duck.git`  
 
 instalar pyenv e utilizar python 3.11.5 no diretório root do projeto:  
