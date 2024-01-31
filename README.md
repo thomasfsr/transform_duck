@@ -1,3 +1,6 @@
+## Para visualizar o Dashboard:  
+https://dash-sales-retail-duckdb.onrender.com/  
+  
 ## Passos para instalar o projeto:  
 `git clone https://github.com/thomasfsr/transform_duck.git`  
 
