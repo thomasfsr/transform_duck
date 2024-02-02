@@ -12,7 +12,7 @@ Clonar o repositório:
 entrar no repositório:  
 `cd transform_duck`  
   
-instalar pyenv e utilizar python 3.11.5 no diretório root do projeto:  
+Configurar o pyenv com python 3.11.5 no diretório root do projeto:  
 `pyenv local 3.11.5`  
   
 instalar as dependências com poetry:  
