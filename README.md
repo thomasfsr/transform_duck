@@ -5,10 +5,13 @@ https://dash-sales-retail-duckdb.onrender.com/
 `git clone https://github.com/thomasfsr/transform_duck.git`  
 
 instalar pyenv e utilizar python 3.11.5 no diretório root do projeto:  
-`pyenv local 3.11.5`  
+`pyenv local 3.11.5`
   
 instalar poetry:  
 `pip install poetry`  
+  
+Ativar o virtual env:  
+`poetry shell`  
   
 instalar as dependencias com poetry:  
 `poetry install`  
