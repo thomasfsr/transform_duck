@@ -5,9 +5,13 @@ https://dash-sales-retail-duckdb.onrender.com/
 ## Passos para instalação o projeto:  
 instalar poetry caso não tenha instalado:  
 `pip install poetry` 
-  
+
+Clonar o repositório:  
 `git clone https://github.com/thomasfsr/transform_duck.git`  
 
+entrar no repositório:  
+`cd transform_duck`  
+  
 instalar pyenv e utilizar python 3.11.5 no diretório root do projeto:  
 `pyenv local 3.11.5`  
   
