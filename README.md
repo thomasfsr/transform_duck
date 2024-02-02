@@ -1,19 +1,16 @@
 ## Para visualizar o Dashboard:  
 https://dash-sales-retail-duckdb.onrender.com/  
   
+instalar poetry caso não tenha instalado:  
+`pip install poetry` 
+  
 ## Passos para instalação o projeto:  
 `git clone https://github.com/thomasfsr/transform_duck.git`  
 
 instalar pyenv e utilizar python 3.11.5 no diretório root do projeto:  
-`pyenv local 3.11.5`
+`pyenv local 3.11.5`  
   
-instalar poetry:  
-`pip install poetry`  
-  
-Ativar o virtual env:  
-`poetry shell`  
-  
-instalar as dependencias com poetry:  
+instalar as dependências com poetry:  
 `poetry install`  
   
 Baixar os arquivos csv e colocar em um diretorio data dentro do projeto.  
