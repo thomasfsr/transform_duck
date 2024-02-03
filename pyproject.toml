@@ -32,6 +32,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.taskipy.tasks]
 run = "poetry run python start_local.py"
 test = "poetry run pytest -v"
-dash = "poetry run python frontend/dashboard_s3.py"
+dash = "poetry run python dashboard_s3.py"
 format = "isort . & blue ."
 kill = "kill -9 $(lsof -t -i :8000)"
