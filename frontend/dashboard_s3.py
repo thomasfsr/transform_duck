@@ -2,7 +2,7 @@ import os
 import plotly.express as px
 from dash import Dash, dcc, html
 from dash.dash_table import DataTable
-from client_s3 import query_s3, close_conn
+from frontend.client_s3 import query_s3, close_conn
 from dotenv import load_dotenv
 
 load_dotenv()
