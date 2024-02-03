@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 aws_access_key_id = os.getenv('aws_access_key_id')
 aws_secret_access_key = os.getenv('aws_secret_access_key')
-s3_bucket = os.getenv('s3_bucket')
+s3_bucket = 'salesretail'
 s3_directory = os.getenv('s3_directory')
 table = 'sales_retail'
 url_s3 = f"read_parquet('s3://{s3_bucket}/{table}.parquet')"
