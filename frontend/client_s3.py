@@ -1,4 +1,5 @@
 import os
+
 import duckdb
 from dotenv import load_dotenv
 
@@ -9,7 +10,7 @@ s3_bucket = 'salesretail'
 table = 'sales_retail'
 
 conn = duckdb.connect(database=':memory:')
-conn.execute(f"INSTALL httpfs;")
+conn.execute(f'INSTALL httpfs;')
 conn.execute(f"LOAD 'httpfs';")
 conn.execute(f"SET s3_region = 'us-east-2';")
 conn.execute(f"SET s3_access_key_id = '{aws_access_key_id}';")
@@ -17,9 +18,11 @@ conn.execute(f"SET s3_secret_access_key = '{aws_secret_access_key}';")
 
 parquet_file = f's3://{s3_bucket}/{table}.parquet'
 
-def query_s3(query:str):
+
+def query_s3(query: str):
     result = conn.execute(query)
     return result.fetch_df()
+
 
 def close_conn():
     conn.close()

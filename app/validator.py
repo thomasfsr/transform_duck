@@ -2,8 +2,9 @@ import os
 from typing import List
 
 import pandas as pd
-from app.contract import SalesRetail
 from pydantic import ValidationError
+
+from app.contract import SalesRetail
 
 
 def validate_csv(file_path: str) -> List[ValidationError]:

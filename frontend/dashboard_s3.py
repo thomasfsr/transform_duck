@@ -1,9 +1,11 @@
 import os
+
 import plotly.express as px
 from dash import Dash, dcc, html
 from dash.dash_table import DataTable
-from frontend.client_s3 import query_s3, close_conn
 from dotenv import load_dotenv
+
+from frontend.client_s3 import close_conn, query_s3
 
 load_dotenv()
 aws_access_key_id = os.getenv('aws_access_key_id')

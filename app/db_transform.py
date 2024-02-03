@@ -1,7 +1,7 @@
 import os
 
-import duckdb
 import boto3
+import duckdb
 
 from app.validator import validator
 
@@ -81,16 +81,23 @@ class DuckdbTransform:
     def close_connection_static(conn):
         conn.close()
 
+
 def export_to_s3(file: str):
     file = file
     aws_access_key_id = os.getenv('aws_access_key_id')
     aws_secret_access_key = os.getenv('aws_secret_access_key')
     s3_bucket = os.getenv('s3_bucket')
 
-    s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
+    s3 = boto3.client(
+        's3',
+        aws_access_key_id=aws_access_key_id,
+        aws_secret_access_key=aws_secret_access_key,
+    )
 
     try:
         s3.upload_file(file, s3_bucket, os.path.basename(file))
-        print(f"File '{file}' successfully exported to S3 bucket '{s3_bucket}'.")
+        print(
+            f"File '{file}' successfully exported to S3 bucket '{s3_bucket}'."
+        )
     except Exception as e:
-        print(f"Error uploading file to S3: {e}")
+        print(f'Error uploading file to S3: {e}')

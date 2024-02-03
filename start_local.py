@@ -1,5 +1,4 @@
-from app.db_transform import DuckdbTransform
-from app.db_transform import export_to_s3
+from app.db_transform import DuckdbTransform, export_to_s3
 
 dbname = 'sales'
 path = 'data/arquivos_csv'
