@@ -18,7 +18,7 @@ Configurar o pyenv com python 3.11.5 no diretório root do projeto:
 instalar as dependências com poetry:  
 `poetry install`  
   
-Baixar os arquivos csv e colocar em um diretorio data dentro do projeto.  
+Caso queira rodar com dados localmente: Baixar os arquivos csv e colocar em um diretório data dentro do projeto.  
 https://drive.google.com/drive/folders/1D8fsqnVaB97OYHr03buo8SqelD4zlkUX  
   
 rodar o start.py que criará o database a partir dos csv's do diretório data:  
