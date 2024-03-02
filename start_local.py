@@ -1,7 +1,7 @@
 from app.db_transform import DuckdbTransform, export_to_s3
 
 dbname = 'sales'
-path = 'data/arquivos_csv'
+path = '/mnt/c/users/Home/workspace/project001/transform_duck/data/arquivos_csv'
 tablename = 'sales_retail'
 
 duckdb_creator = DuckdbTransform(
