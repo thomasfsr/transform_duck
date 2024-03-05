@@ -23,7 +23,7 @@ sqlalchemy = "^2.0.25"
 psycopg = "^3.1.17"
 psycopg-binary = "^3.1.17"
 httpfs = "^0.0.1"
-pandera = "^0.18.0"
+pandera = {extras = ["io"], version = "^0.18.0"}
 
 
 [build-system]
